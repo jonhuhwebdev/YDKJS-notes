@@ -116,3 +116,53 @@ The "loop until a condition fails" concept holds no matter what the form of the
 loop.
 
 //----------------------------------------------------------------------------//
+
+#Functions
+
+set of instructions defined once and used over and over again.
+
+ex. cash register vs calculator
+
+A function is generally a named section of code that can be 'called' by name.
+
+ex.
+
+function printAmount() {
+	console.log( amount.toFixed( 2 ) );
+}
+
+var amount = 99.99;
+
+printAmount(); // "99.99"
+
+amount = amount * 2;
+
+printAmount(); // "199.98"
+
+functions can optionally take parameters and return a value.
+
+functions are used for code that you plan to use mutiple times, but often
+it is used to organize related bits of code into named collections, even if
+you plan to call them once.
+
+ex.
+const TAX_RATE = 0.08;
+
+function calculateFinalPurchaseAmount(amt) {
+	// calculate the new amount with the tax
+	amt += (amt * TAX_RATE);
+
+	// return the new amount
+	return amt;
+}
+
+var amount = 99.99;
+
+amount = calculateFinalPurchaseAmount( amount );
+
+console.log( amount.toFixed(2) );
+
+even though calculateFinalPurchaseAmount function is called once, abstracting
+away its behavior makes the code that uses its logic much cleaner.
+
+//----------------------------------------------------------------------------//
