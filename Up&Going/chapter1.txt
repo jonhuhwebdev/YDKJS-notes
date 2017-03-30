@@ -166,3 +166,60 @@ even though calculateFinalPurchaseAmount function is called once, abstracting
 away its behavior makes the code that uses its logic much cleaner.
 
 //----------------------------------------------------------------------------//
+
+#Scope
+
+dictionary definition: The extent of the area or subject matter that something deals with or to
+which it is relevant.
+
+Scope is basically a collection of variables as well as the rules for how those
+variables are accessed by name.
+
+each function gets its own scope. and only code inside that function can access
+that function's scoped variables
+
+a variable name has to be unique within the same scope, but same variable name
+can appear in different scopes.
+
+ex.
+function one() {
+	// this `a` only belongs to the `one()` function
+	var a = 1;
+	console.log( a );
+}
+
+function two() {
+	// this `a` only belongs to the `two()` function
+	var a = 2;
+	console.log( a );
+}
+
+one();		// 1
+two();		// 2
+
+a scope can be nested in another scope.
+
+the inner scope can access the outer scope's variables, but not the other way
+around.
+
+ex.
+function outer() {
+	var a = 1;
+
+	function inner() {
+		var b = 2;
+
+		// we can access both `a` and `b` here
+		console.log( a + b );	// 3
+	}
+
+	inner();
+
+	// we can only access `a` here
+	console.log( a );			// 1
+}
+
+outer();
+
+lexical scope: code in one scope can access variable in that scope or any scope
+outside of it.
