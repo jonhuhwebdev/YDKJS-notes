@@ -15,3 +15,38 @@ if (amount < bank_balance) {
 }
 
 if statement requires a boolean expression in between parentheses.
+
+you can provide an alternative if the condition isn't true, called else clause
+
+ex.
+const ACCESSORY_PRICE = 9.99;
+
+var bank_balance = 302.13;
+var amount = 99.99;
+
+amount = amount * 2;
+
+// can we afford the extra purchase?
+if ( amount < bank_balance ) {
+	console.log( "I'll take the accessory!" );
+	amount = amount + ACCESSORY_PRICE;
+}
+// otherwise:
+else {
+	console.log( "No, thanks." );
+}
+
+values that aren't already of an expected type are often coerced to that type.
+pass something other than boolean into the if-statement's condition, it will
+be coerced into boolean.
+
+coerced "falsy" : 0, "",
+coerced "truthy" : anything other than "falsy"
+
+2) switch statmement
+
+switch statment can be used as a shorthand for series of if-else statements
+
+3) Loops
+
+Loops use conditionals to either keep going or stop.
