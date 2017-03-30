@@ -223,3 +223,32 @@ outer();
 
 lexical scope: code in one scope can access variable in that scope or any scope
 outside of it.
+
+//---------------------------------------------------------------------------//
+
+#Practice
+
+const TAX_RATE = 0.08;
+const PHONE_PRICE = 920.99;
+const MENTAL_THRESHOLD = 3000;
+const ACCESSORY_PRICE = 19.99;
+
+var bankBalance = prompt("How much do you have in your bank?");
+var amount = 0;
+
+while(amount < bankBalance) {
+  amount += PHONE_PRICE;
+
+  if (amount < MENTAL_THRESHOLD) {
+    amount += ACCESSORY_PRICE;
+  }
+}
+
+amount = (amount + (amount * TAX_RATE)).toFixed(2);
+console.log("Total: " + "$" + amount);
+
+if (amount > bankBalance) {
+  console.log("you can't afford this..");
+} else {
+  console.log('you can afford this!');
+}
