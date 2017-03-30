@@ -1,0 +1,17 @@
+#Conditionals
+
+to make a decision, you need to first consult the state.
+
+different ways to express conditionals
+
+1) if-statement ("If this condition is true, do the following...")
+
+ex.
+var bank_balance = 302.13;
+var amount = 99.99;
+
+if (amount < bank_balance) {
+	console.log( "I want to buy this phone!" );
+}
+
+if statement requires a boolean expression in between parentheses.
