@@ -252,3 +252,18 @@ if (amount > bankBalance) {
 } else {
   console.log('you can afford this!');
 }
+
+//---------------------------------------------------------------------------//
+
+#Review
+
+-use operators to perform actions on values
+-you need values and type to perform different kinds of actions like math on
+numbers or outputing with strings
+-you need variables to store data (aka. state) during your program's execution
+-conditionals like if-statments,or switch statements or loop conditions
+ for decisions
+-loops for repeating tasks until condition fails
+-functions to organize code into logical and reusable chunks
+-comments allow code to be more readable, which means easier to understand,
+maintain, and fix.
