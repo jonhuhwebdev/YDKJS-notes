@@ -409,3 +409,9 @@ new foo() sets this to a brand new empty object.
 Bottom line: to understand what this points to, you have to examine how the
 function in question was called. It will be one of those four ways just shown,
 and that will then answer what this is.
+
+//---------------------------------------------------------------------------//
+
+The first step to learning JavaScript's flavor of programming is to get a basic
+understanding of its core mechanisms like values, types, function closures, this
+, and prototypes.
