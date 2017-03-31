@@ -1,0 +1,205 @@
+# Values & Types
+
+Javascript has typed values, not typed variables.
+-string
+-number
+-boolean
+-null, undefined
+-object
+-symbol(ES6)
+
+ex.
+var a;
+typeof a;				// "undefined"
+
+a = "hello world";
+typeof a;				// "string"
+
+a = 42;
+typeof a;				// "number"
+
+a = true;
+typeof a;				// "boolean"
+
+a = null;
+typeof a;				// "object" -- weird, bug
+
+a = undefined;
+typeof a;				// "undefined"
+
+a = { b: "c" };
+typeof a;				// "object"
+
+typeof operator always returns one of six(seven as of ES6) strings.
+
+typeof a means "type of VALUE in variable a", not "type of variable a"
+because only VALUES have types in JS
+variables are just containers for those values.
+
+** typeof null is expected to return "null", but it errantly returns "object".
+** this bug will not likely to be fixed.
+
+a = undefined;
+
+  is equivalent to
+
+var a;
+
+Object typed value has properties(named locations) that each hold their own
+value of any type.
+
+ex.
+var obj = {
+	a: "hello world",
+	b: 42,
+	c: true
+};
+
+obj.a;		// "hello world"
+obj.b;		// 42
+obj.c;		// true
+
+obj["a"];	// "hello world"
+obj["b"];	// 42
+obj["c"];	// true
+
+properties can either be accessed with dot notation or bracket notation(need
+string inside or a variable.)
+
+dot notation is prefered when possible, but bracket notation is needed if the
+property name has special characters such as obj["hello world!"]
+
+ex.
+
+var obj = {
+	a: "hello world",
+	b: 42
+};
+
+var b = "a";
+
+obj[b];			// "hello world"
+obj["b"];		// 42
+
+there are also two other value types: array and function. These are like
+sub-type -- specialized versions of the object type.
+
+An array is an object that hold values of any type in numerically indexed
+positions
+
+you could use array as a normal object with named properties or use object
+as an array with numerically indexed properties, but it would be considered
+improper.
+
+array = numerically positioned values
+object = named properties
+
+other object subtype is function.
+
+ex.
+
+function foo() {
+	return 42;
+}
+
+foo.bar = "hello world";
+
+typeof foo;			// "function"
+typeof foo();		// "number"
+typeof foo.bar;		// "string"
+
+you only use function object properties in limited cases(like foo.bar);
+
+types
+-number
+-string
+-boolean
+-object
+-null(typeof null is 'object'), undefined
+
+subtypes(specilzied object)
+-function
+-array(typeof array is 'object')
+
+these types and subtypes have behaviors exposed as properties and methods that
+are quite powerful and useful.
+
+ex.
+var a = "hello world";
+var b = 3.14159;
+
+a.length;				// 11
+a.toUpperCase();		// "HELLO WORLD"
+b.toFixed(4);			// "3.1416"
+
+primative values have corresponding object wrapper
+string values have String obj
+number values have Number obj
+boolearn values have Boolean obj
+
+these wrapper object defines method and properties on its prototype
+
+when you use primative values as an object by referencing a property or method,
+JS 'boxes' the values to its object wrapper counterpart
+
+
+there are two main type of value comparison in JS: equality, and inquality
+the results of any comparison will be strictly boolean value(true or false),
+no matter what kind of values are being compared.
+
+explicit coercion means it is obvious that a value is being converted into
+another type,
+but implicit coercion is when type conversion happens as more of a non-obvious
+side effect of some other operation (42 + 'string' = '42string')
+
+explicit coercion = obvious
+implicit coercion = not obvious
+
+when a non-boolean value is coerced into a boolean value is it 'truthy' or
+'falsy'?
+
+falsy:
+""
+0, -0, NaN
+null, undefined
+false
+
+any other values, when coerced into boolean is 'truthy'
+such as, [], 'hello', 42, {}, function() {...}
+
+equality operator: ==, ===, !=, !==
+
+https://dorey.github.io/JavaScript-Equality-Table/
+
+== checks for value equality with type coercion allowed
+=== checks for value equality only(no coercion)
+
+ex.
+var a = "42";
+var b = 42;
+
+a == b;			// true
+a === b;		// false
+
+==
+when the types of the values being compared does not match,
+it goes through ordered series of steps to coerce on or both values to a
+different type until the types match, and then the values are checked.
+
+===
+only value checked
+
+avoid == if,
+** either value in a comparison could be true of false,
+** either value could be 0, [], or ""
+
+inequality: <, >, <=, >=
+
+coercion rules are similar to equality comparison, but not exactly
+there is no strict inqeuality comparison like ===
+
+if both values are strings, it is compared alphabetically
+but if one or both values are not a string, then the values are coerced into
+numbers.
+
+//---------------------------------------------------------------------------//
