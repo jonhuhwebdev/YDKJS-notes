@@ -203,3 +203,41 @@ but if one or both values are not a string, then the values are coerced into
 numbers.
 
 //---------------------------------------------------------------------------//
+
+#Variables
+
+variable names must be valid identifiers
+-must start with a-z, A-Z, $, _
+-can contain the above and 0-9
+
+generally, same apply with property names, but reserved words cannot be used
+as variable names: for, in, if, null, true, false, etc
+
+  Function Scopes
+
+use the var keyword to declare a variable to the current function scope,
+or the global scope if its is outside of any function.
+
+  Hoisting
+
+Declaration(function, variable) applies to the whole scope, so those
+declarations are available anywhere in the correspoding scope.
+
+declarations are conceptually 'moved' to the top of its enclosing scope.
+
+**do not rely on hoisting to use variable earlier than its declaration.
+**it is more common for functions to be used earlier.
+
+inner scopes can access outer scopes variables, but not vice versa.
+
+if you set a variable without declaring it, it will automatically be declared
+as a global variable(BAD)
+
+ES6 lets you declare variables to belong to individual blocks {...}, using
+let keyword.
+
+if blocks, while blocks, for blocks
+let keywords lets you contain the scope inside those blocks, unlike var which
+lets scope outside of those blocks access the variable.
+
+//---------------------------------------------------------------------------//
