@@ -253,3 +253,40 @@ ternary operator, conditional operator
 (conditional)?(returned value if true):(returned value if false)
 
 //---------------------------------------------------------------------------//
+
+#Strict Mode
+strict mode add restrictions which tightens the rules for certain behaviors.
+these restrictions are seen as safer, and more appropriate guidelines.
+
+strict mode applies to current scope and inner scopes
+
+ex.
+function foo() {
+	"use strict";
+
+	// this code is strict mode
+
+	function bar() {
+		// this code is strict mode
+	}
+}
+
+// this code is not strict mode
+Compare that to:
+
+"use strict";
+
+function foo() {
+	// this code is strict mode
+
+	function bar() {
+		// this code is strict mode
+	}
+}
+
+// this code is strict mode
+
+strict more disallows automatic global declaration for undeclared variables
+
+do not turn of strict mode to fix bugs!
+ 
