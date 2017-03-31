@@ -241,3 +241,15 @@ let keywords lets you contain the scope inside those blocks, unlike var which
 lets scope outside of those blocks access the variable.
 
 //---------------------------------------------------------------------------//
+
+#Conditionals
+
+if-else
+
+switch statements
+-remember to break after each cases, unless you want fall through
+
+ternary operator, conditional operator
+(conditional)?(returned value if true):(returned value if false)
+
+//---------------------------------------------------------------------------//
