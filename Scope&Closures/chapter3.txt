@@ -181,3 +181,88 @@ undefined = true; // setting a land-mine for other code! avoid!
 })();
 
 //---------------------------------------------------------------------------//
+#Blocks As Scopes
+
+variables that are declared in if-statement, for loops, while loops belong to
+the outer scopes, so it pollutes the scope and goes against the principle of
+least exposure. It essentially leaves it up to the programmer to not use the
+same identifier name.
+
+block scope pre-ES6: 'with', catch block in 'try/catch'
+
+ex.
+try {
+	undefined(); // illegal operation to force an exception!
+}
+catch (err) {
+	console.log( err ); // works!
+}
+
+console.log( err ); // ReferenceError: `err` not found
+
+**let
+the let keyword attaches the variable declaration to the scope of whatever
+block it's contained in.
+
+var foo = true;
+
+if(foo) {
+  let bar = foo * 2;
+  bar = something(bar);
+  console.log(bar);
+}
+console.log(bar); //ReferenceError
+
+using let to existing block is somewhat implicit. It is better to block
+explicitly.
+
+ex.
+
+var foo = true;
+if (foo) {
+  { //<= explicit block
+    let bar = foo * 2;
+    ...
+  }
+}
+console.log(bar) //ReferenceError
+
+** variables declared with let keyword will not be hoisted
+ex.
+{
+  console.log(bar) //ReferenceError
+  let bar = 'foo';
+}
+
+#Garbage Collection
+
+data inside explicitly blocked scope will be garbage collected, instaed of being
+persisted by closure.
+ex.
+function process(data) {
+	// do something interesting
+}
+
+// anything declared inside this block can go away after!
+{
+	let someReallyBigData = { .. };
+
+	process( someReallyBigData );
+}
+
+var btn = document.getElementById( "my_button" );
+
+btn.addEventListener( "click", function click(evt){
+	console.log("button clicked");
+}, /*capturingPhase=*/false );
+
+//---------------------------------------------------------------------------//
+#Review
+
+Functions are the most common unit of scope in JS. Variables and functions
+declared in another function are 'hidden' from enclosing scope.
+
+there is also block-scope, which refers to the idea of variables and functions
+can belong in an arbitrary block {...}, let key word can achieve this.
+
+use both var and let to their advantage.
