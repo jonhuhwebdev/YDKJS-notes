@@ -1,0 +1,29 @@
+Where do variables live? Where are they stored? how does our program find them
+when we need them?
+
+These questions speak to the need for a well-defined set of rules for storing
+variables in some location, and for finding those variables at a later time.
+We'll call that set of rules: Scope.
+
+#Compiler Theory
+
+compilation consists of,
+
+1) Tokenizing, or Lexing
+
+  breaking up a string of characters into meaningful chunks, called tokens.
+
+  *tokenizing vs lexing = stateless vs stateful
+
+2) Parsing
+
+  taking a stream(array) of tokens and turning it into a tree, which represents
+  the grammatical structure of the program. AST = Abstract Syntax Tree.
+
+3) Code-Generation
+
+  Process of turning AST into executable code.
+
+JS snippets are compiled right before it is executed.
+
+//---------------------------------------------------------------------------//
