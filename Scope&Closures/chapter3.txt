@@ -90,3 +90,94 @@ var MyReallyCoolLibrary = {
 };
 
 //---------------------------------------------------------------------------//
+#Functions as Scopes
+
+var a = 2;
+
+function foo() { // <-- insert this
+
+	var a = 3;
+	console.log( a ); // 3
+
+} // <-- and this
+foo(); // <-- and this
+
+console.log( a ); // 2
+
+this method of hiding pollutes the global scope.
+we have to explicitly execute foo()
+
+better way is
+
+var a = 2;
+
+(function foo(){ // <-- insert this
+
+	var a = 3;
+	console.log( a ); // 3
+
+})(); // <-- and this
+
+console.log( a ); // 2
+
+now the identifier 'foo' does not belong to the global scope.
+function declaration vs function expression:
+declaration statement starts with function keyword in the beginning. otherwise,
+it's a function expression.
+
+#Anonymous vs Named
+
+function expressions can be anon. but not declaration.
+
+drawbacks of anon. func.
+
+1) difficult to trace, which makes debugging difficult.
+2) self-reference issues
+3) descriptive name helps self-document code.
+
+providing name for function expression resolves these issues.
+
+#IIFE (Immediately Invoked Function Expression)
+
+-name it IIFE for aforementioned benefits
+ex.
+var a = 2;
+
+(function IIFE(){
+
+	var a = 3;
+	console.log( a ); // 3
+
+})();
+
+console.log( a ); // 2
+
+-you can also pass in an argument
+
+var a = 2;
+
+(function IIFE( global ){
+
+	var a = 3;
+	console.log( a ); // 3
+	console.log( global.a ); // 2
+
+})( window );
+
+console.log( a ); // 2
+
+use it to safeguard against accidental overwrite of 'undefined' identifier
+
+ex.
+undefined = true; // setting a land-mine for other code! avoid!
+
+(function IIFE( undefined ){
+
+	var a;
+	if (a === undefined) {
+		console.log( "Undefined is safe here!" );
+	}
+
+})();
+
+//---------------------------------------------------------------------------//
