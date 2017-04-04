@@ -9,3 +9,84 @@ any variables that are outside of current scope is accessible but they are
 hidden if it is inside non parent scope.
 
 //---------------------------------------------------------------------------//
+#Hiding In Plain Scope
+
+wrapping a section of code with function wrapper 'hides' the code.
+what it does is any declaration in that section of code will now be tied to
+the scope of the new wrapping function, so it the variables won't be accessible
+from the previously enclosing scope.
+
+why?
+
+"Principle of Least Privilege", "Least Authority", or "Least Exposure":
+expose only what is minimally necessary and 'hide' everything else.
+
+ex.
+function doSomething(a) {
+	b = a + doSomethingElse( a * 2 );
+
+	console.log( b * 3 );
+}
+
+function doSomethingElse(a) {
+	return a - 1;
+}
+
+var b;
+
+doSomething( 2 ); // 15
+
+this exposes unnecessary details of doSomethingElse and var b.
+
+more appropriate way would be
+
+ex.
+function doSomething(a) {
+  function doSomethingElse(a) {
+    return a - 1;
+  }
+  var b;
+
+  b = a + doSomethingElse( a * 2 );
+
+  console.log( b * 3 );
+}
+
+Now b and doSomethingElse are not accessible to any outside influence.
+
+#Collision Avoidance
+
+collision ex.
+
+function foo() {
+  function bar(a) {
+    i = 3;
+    console.log( a + i );
+  }
+  for (var i = 0; i < 10; i++) {
+    bar(i * 2);
+  }
+}
+
+var i = 3; would fix the problem because it would hide the i from the scope
+of foo.
+
+#Global Namespace
+
+it is common for name collision to happen at global scope, so libraries use
+an object with a unique name and use the properties of that object to store
+the values.
+
+ex.
+
+var MyReallyCoolLibrary = {
+	awesome: "stuff",
+	doSomething: function() {
+		// ...
+	},
+	doAnotherThing: function() {
+		// ...
+	}
+};
+
+//---------------------------------------------------------------------------//
