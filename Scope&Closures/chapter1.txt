@@ -27,3 +27,67 @@ compilation consists of,
 JS snippets are compiled right before it is executed.
 
 //---------------------------------------------------------------------------//
+
+#Understanding Scope
+
+executing var a = 2; involves
+
+  1) Engine: responsible for start to finish compilation and execution of our
+  JS program.
+
+  2) Compiler: handles parsing and code generation
+
+  3) Scope: maintains a look-up list of declared variables and enforces
+  a set of rules at to how these are accessible to currently executing code.
+
+Compiler lexes, and parses code into AST, and when it gets to code-generation,
+
+  when it gets to "var a" compiler checks scope. (if declared already, ignore,
+  if not, tell scope to declare one for the current scope.)
+  then the compiler produces code for "a = 2" assignment for the engine to
+  execute.
+  the code engine runs will first check scope for variable a(if variable
+  exists, then assigns 2 into a, if not, throw un error.)
+
+To summarize: First, Compiler declares a variable (if not already declared
+in current Scope), then, when executing, Engine looks up the variable in Scope
+and assign to it, if found.
+
+**LHS look-up: find the variable container itself for assignment(target)
+**RHS look-up: retrieve the value(source)
+
+ex.
+
+function foo(a) {
+	console.log( a ); // 2
+}
+
+foo( 2 );
+
+RHS: foo(..), a(in console.log)
+LHS: a(parameter)
+
+**not foo in the function declaration. variable declaration and function value
+definition is handled by compiler during code-generation. therefore when
+engine is executing code, there is no need for the Engine to assign the
+function value to variable foo.
+
+Quiz.
+
+function foo(a) {
+	var b = a;
+	return a + b;
+}
+
+var c = foo( 2 );
+
+have a conversation as Engine, and identify LHS, and RHS
+
+Engine: I have LHS reference for 'c', ever heard of it?
+
+Scope:
+
+LHS: a, var b, var c
+RHS: a, a, b, foo
+
+//---------------------------------------------------------------------------//
