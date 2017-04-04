@@ -114,3 +114,25 @@ Scope: yup, here ya go.
 Resolve RHS and LHS with scope look-up chain.
 
 //---------------------------------------------------------------------------//
+
+#Errors
+
+RHS and LHS behaves differently when a variable cannot be found in any consulted
+scopes.
+
+RHS: ReferenceError
+LHS: the global scope makes declares the variable and hands it to the Engine.
+
+in strict mode, both throws ReferenceError.
+
+#Review
+
+RHS: looking up for retrieving value
+LHS: looking up for assigning value
+
+LHS results from assignment. (= or function parameter)
+
+var a = 2;
+
+first: var a (declaration in that scope, happens before code execution)
+second: a = 2; (assignment)
