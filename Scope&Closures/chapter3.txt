@@ -1,0 +1,11 @@
+Scope consists of a series of "bubbles" that each act as a container or bucket,
+in which identifiers(variables, functions) are declared. These bubbles nest
+inside each other, and this nesting is defined at author-time(write time).
+
+#Scope from Functions
+Each function you declare creates a bubble for itself.
+
+any variables that are outside of current scope is accessible but they are
+hidden if it is inside non parent scope.
+
+//---------------------------------------------------------------------------//
