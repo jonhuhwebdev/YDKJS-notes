@@ -91,3 +91,26 @@ LHS: a, var b, var c
 RHS: a, a, b, foo
 
 //---------------------------------------------------------------------------//
+
+#Nested Scope
+
+If a variable cannot be found in the immediate scope, Engine consults the next
+outer scope, continuing until the global scope.
+
+ex.
+function foo(a) {
+	console.log( a + b );
+}
+
+var b = 2;
+
+foo( 2 ); // 4
+
+Engine: hey scope of foo, I have RHS for b, ever heard of it?
+Scope: nope, look elsewhere.
+Engine: hey outer scope of foo(global scope), I have RHS for b, ever heard?
+Scope: yup, here ya go.
+
+Resolve RHS and LHS with scope look-up chain.
+
+//---------------------------------------------------------------------------//
